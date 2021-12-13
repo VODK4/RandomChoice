@@ -3,6 +3,15 @@
 
 All items are seperated by ",".
 
+Modes:
+    Mode-1:
+        Filter items to be used only once.
+        Exemple:
+            Prefilter = [1,1,2,2,2,2,3,4,5,5]
+            Afterfilter = [1,2,3,4,5]
+    Mode-2:
+        Get multiple output at once.
+
 1.0:
     Basic app runs on terminal.
 
@@ -15,3 +24,8 @@ All items are seperated by ",".
     -Now users are able to use program multiple times without the need of reboot.
     -Added new mode. (Allow item only once.)
         +It prevent you from putting same element multiple times by acident.
+
+2.2:
+    -Fixed bug of mode-1.
+    -Added a new mode (mode-2).
+    -Prettier UI.
