@@ -29,3 +29,6 @@ Modes:
     -Fixed bug of mode-1.
     -Added a new mode (mode-2).
     -Prettier UI.
+
+2.3:
+    -Builtin mod descriptions added.
