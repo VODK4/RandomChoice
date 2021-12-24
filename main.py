@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import filedialog
 import random
 
 root = Tk()
@@ -132,9 +133,21 @@ win2Btn.config(relief=RIDGE)
 win2Btn.place(x=920, y=470)
 
 def outputAsFile():
-    pass
 
-outputAsFileBtn = Button(root, text="O2F")
+    f = filedialog.asksaveasfile(
+        defaultextension = ".txt",
+        filetypes = [
+            ("Text file", ".txt"),
+            ("All files", ".*")
+        ]
+        )
+    f.write(str(OUTPUT)
+    f.close()
+
+
+
+
+outputAsFileBtn = Button(root, text="OAF")
 outputAsFileBtn.config(command=outputAsFile)
 outputAsFileBtn.config(width=15)
 outputAsFileBtn.place(x=615, y=80)

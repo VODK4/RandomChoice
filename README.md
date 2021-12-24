@@ -32,3 +32,6 @@ Modes:
 
 2.3:
     -Builtin mod descriptions added.
+
+2.4: 
+    -Now you can output as file.
