@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import filedialog
 import random
+import os
+
 
 root = Tk()
 
@@ -69,6 +71,12 @@ def submit():
 
     OUTPUTList = str(OUTPUT)
 
+    OUTPUTList = OUTPUTList.replace("[", "")
+    OUTPUTList = OUTPUTList.replace("]", "")
+    OUTPUTList = OUTPUTList.replace("'", "")
+    OUTPUTList = OUTPUTList.replace(" ", "")
+
+
     outputLabel.config(text="Output: \t"+OUTPUTList)
 
 
@@ -125,6 +133,18 @@ def infoWin():
     mode2L.config(text=mode2LTxt)
     mode2L.pack()
 
+    mode3L = Label(win)
+    mode3LTxt = "OAF: Output as File"
+    mode3L.config(text=mode3LTxt)
+    mode3L.pack()
+
+    mode4L = Label(win)
+    mode4LTxt = "IAF: Input as Folder"
+    mode4L.config(text=mode4LTxt)
+    mode4L.pack()
+
+
+
 win2Btn = Button(root, text="Info", command=infoWin)
 win2Btn.config(width=9)
 win2Btn.config(bg="#F2B90C")
@@ -141,16 +161,44 @@ def outputAsFile():
             ("All files", ".*")
         ]
         )
-    f.write(str(OUTPUT)
+    fData = str(OUTPUT)
+    fData = fData.replace("[", "")
+    fData = fData.replace("]", "")
+    fData = fData.replace("'", "")
+    fData = fData.replace(" ", "")
+    f.write(fData)
     f.close()
-
-
-
 
 outputAsFileBtn = Button(root, text="OAF")
 outputAsFileBtn.config(command=outputAsFile)
-outputAsFileBtn.config(width=15)
-outputAsFileBtn.place(x=615, y=80)
+outputAsFileBtn.config(width=5)
+outputAsFileBtn.place(x=665, y=80)
+
+def ınputAsFile():
+
+    f = filedialog.askopenfile(
+        mode="r",
+        defaultextension = ".txt",
+        filetypes = [
+            ("Text file", ".txt")
+        ]
+        )
+    
+    fp = os.path.abspath(f.name)
+
+    f = open(fp, "r")
+    fData = f.read()
+    f.close()
+    fData = fData.replace("[", "")
+    fData = fData.replace("]", "")
+    fData = fData.replace("'", "")
+    fData = fData.replace(" ", "")
+    ınputBox.insert("1.0", fData)
+
+ınputAsFileBtn = Button(root, text="IAF")
+ınputAsFileBtn.config(command=ınputAsFile)
+ınputAsFileBtn.config(width=5)
+ınputAsFileBtn.place(x=615, y=80)
 
 
 

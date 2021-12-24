@@ -35,3 +35,7 @@ Modes:
 
 2.4: 
     -Now you can output as file.
+
+3.0:
+    -Input as file allows you to get big number of inputs.
+    -Bug fixed for OAF
