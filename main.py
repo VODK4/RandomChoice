@@ -11,9 +11,10 @@ root.title("RandomChoice")
 root.config(bg="#F2B90C")
 
 
-
-
+INPUTLEN = []
+WEIGHTLEN = []
 OUTPUT = []
+WIPDATA = []
 
 entryName = Label(root, text="Inputs (',' seperated):")
 entryName.config(bg="#F2B90C")
@@ -35,7 +36,47 @@ def submit():
     entry = ınputBox.get("1.0", "end-1c")
     ınput = entry.split(",")
 
+    lenInput = len(ınput)
+    INPUTLEN.clear()
+    INPUTLEN.insert(0, lenInput)
+
+    #Zero's required
+    def ZERR():
+        ınlen = str(INPUTLEN)
+        ınlen = ınlen.replace("[", "")
+        ınlen = ınlen.replace("]", "")
+        ınlen = ınlen.replace("'", "")
+        ınlen = ınlen.replace(" ", "")
         
+        welen = str(WEIGHTLEN)
+        welen = welen.replace("[", "")
+        welen = welen.replace("]", "")
+        welen = welen.replace("'", "")
+        welen = welen.replace(" ", "")
+
+        try:
+            i = int(ınlen) - int(welen)
+
+            if i < 0:
+                print("Weight's can't be more than ınputs!")
+
+            else:
+                wıpData = str(WIPDATA)
+                wıpData = wıpData.replace("[", "")
+                wıpData = wıpData.replace("]", "")
+                wıpData = wıpData.replace("'", "")
+                wıpData = wıpData.replace(" ", "")
+
+                WIPDATA.clear()
+                WIPDATA.insert(0, wıpData)
+
+                for x in range(i):
+                    WIPDATA.insert(1, ",1")
+        except:
+            pass
+
+    ZERR()
+
     if cb1Var.get() == 1:
         unInput = []
         unInput.clear()
@@ -45,24 +86,91 @@ def submit():
 
         if cb2Var.get() == 1:
             outputNum = int(outputNumBox.get("1.0", "end-1c"))
-            output = random.choices(unInput, k=outputNum)
+
+            wıpdata = str(WIPDATA)
+            wıpdata = wıpdata.replace("[", "")
+            wıpdata = wıpdata.replace("]", "")
+            wıpdata = wıpdata.replace("'", "")
+            wıpdata = wıpdata.replace(" ", "")
+            wıpdata = wıpdata.replace(",,", ",")
+
+            wıpdata = wıpdata.split(",")
+
+            WIPDATA.clear()
+            WIPDATA.insert(0, wıpdata)
+
+            string_list = WIPDATA[0]
+            integer_map = map(int, string_list)
+            wıpdata = list(integer_map)
+
+            output = random.choices(unInput, k=outputNum, weights=wıpdata)
             OUTPUT.clear()
             OUTPUT.insert(0, output)
 
         else:
-            output = random.choice(unInput)
+            wıpdata = str(WIPDATA)
+            wıpdata = wıpdata.replace("[", "")
+            wıpdata = wıpdata.replace("]", "")
+            wıpdata = wıpdata.replace("'", "")
+            wıpdata = wıpdata.replace(" ", "")
+            wıpdata = wıpdata.replace(",,", ",")
+
+            wıpdata = wıpdata.split(",")
+
+            WIPDATA.clear()
+            WIPDATA.insert(0, wıpdata)
+
+            string_list = WIPDATA[0]
+            integer_map = map(int, string_list)
+            wıpdata = list(integer_map)
+
+            output = random.choices(unInput, k=1, weights=wıpdata)
             OUTPUT.clear()
             OUTPUT.insert(0, output)
 
     else:
         if cb2Var.get() == 1:
             outputNum = int(outputNumBox.get("1.0", "end-1c"))
-            output = random.choices(ınput, k=outputNum)
+
+
+            wıpdata = str(WIPDATA)
+            wıpdata = wıpdata.replace("[", "")
+            wıpdata = wıpdata.replace("]", "")
+            wıpdata = wıpdata.replace("'", "")
+            wıpdata = wıpdata.replace(" ", "")
+            wıpdata = wıpdata.replace(",,", ",")
+
+            wıpdata = wıpdata.split(",")
+
+            WIPDATA.clear()
+            WIPDATA.insert(0, wıpdata)
+
+            string_list = WIPDATA[0]
+            integer_map = map(int, string_list)
+            wıpdata = list(integer_map)
+
+            output = random.choices(ınput, k=outputNum, weights=wıpdata)
             OUTPUT.clear()
             OUTPUT.insert(0, output)
 
         else:
-            output = random.choice(ınput)
+            wıpdata = str(WIPDATA)
+            wıpdata = wıpdata.replace("[", "")
+            wıpdata = wıpdata.replace("]", "")
+            wıpdata = wıpdata.replace("'", "")
+            wıpdata = wıpdata.replace(" ", "")
+            wıpdata = wıpdata.replace(",,", ",")
+
+            wıpdata = wıpdata.split(",")
+
+            WIPDATA.clear()
+            WIPDATA.insert(0, wıpdata)
+
+            string_list = WIPDATA[0]
+            integer_map = map(int, string_list)
+            wıpdata = list(integer_map)
+
+            output = random.choices(ınput, k=1, weights=wıpdata)
             OUTPUT.clear()
             OUTPUT.insert(0, output)
 
@@ -122,25 +230,30 @@ def infoWin():
     win = Toplevel()
     win.title("Information Window")
     win.geometry("400x200")
+    win.config(bg="#F2B90C")
 
     mode1L = Label(win)
     mode1LTxt = "Mode-1: Filter input against multiple inputs."
     mode1L.config(text=mode1LTxt)
+    mode1L.config(bg="#F2B90C")
     mode1L.pack()
 
     mode2L = Label(win)
     mode2LTxt = "Mode-2: Enable multiple outputs."
     mode2L.config(text=mode2LTxt)
+    mode2L.config(bg="#F2B90C")
     mode2L.pack()
 
     mode3L = Label(win)
     mode3LTxt = "OAF: Output as File"
     mode3L.config(text=mode3LTxt)
+    mode3L.config(bg="#F2B90C")
     mode3L.pack()
 
     mode4L = Label(win)
     mode4LTxt = "IAF: Input as Folder"
     mode4L.config(text=mode4LTxt)
+    mode4L.config(bg="#F2B90C")
     mode4L.pack()
 
 
@@ -171,8 +284,8 @@ def outputAsFile():
 
 outputAsFileBtn = Button(root, text="OAF")
 outputAsFileBtn.config(command=outputAsFile)
-outputAsFileBtn.config(width=5)
-outputAsFileBtn.place(x=665, y=80)
+outputAsFileBtn.config(width=6)
+outputAsFileBtn.place(x=678, y=80)
 
 def ınputAsFile():
 
@@ -197,8 +310,50 @@ def ınputAsFile():
 
 ınputAsFileBtn = Button(root, text="IAF")
 ınputAsFileBtn.config(command=ınputAsFile)
-ınputAsFileBtn.config(width=5)
+ınputAsFileBtn.config(width=6)
 ınputAsFileBtn.place(x=615, y=80)
+
+def ınWeight():
+    win = Toplevel()
+    win.title("Hax Mode")
+    win.geometry("600x200")
+    win.config(bg="#F2B90C")
+
+    #Weight Input Box
+    WIPlabel = Label(win, text="Weight ınput (',' seperated):")
+    WIPlabel.config(bg="#F2B90C")
+    WIPlabel.place(x=20, y=1)
+
+    WIPlabel2 = Label(win, text="Write just 1 for  default weights.")
+    WIPlabel2.config(bg="#F2B90C")
+    WIPlabel2.place(x=80, y=110)
+
+    WIP = Text(win, height=5, width=70)
+    WIP.place(x=20, y=20)
+
+    def ınWeightSubmit():
+        WIPentry = WIP.get("1.0", "end-1c")
+        WIPınput = WIPentry.split(",")
+
+        WIPlen = len(WIPınput)
+        WEIGHTLEN.clear()
+        WEIGHTLEN.insert(0, WIPlen)
+
+        WIPDATA.clear()
+        WIPDATA.insert(0, WIPınput)
+
+    #In Weight Submit Btn
+    IWSB = Button(win, text="Submit", command=ınWeightSubmit)
+    IWSB.place(x=20, y=110)
+
+
+win3Btn = Button(root, text="Hax Mode", command=ınWeight)
+win3Btn.config(width=9)
+win3Btn.config(borderwidth=1)
+win3Btn.config(relief=RIDGE)
+win3Btn.place(x=30, y=470)
+
+
 
 
 

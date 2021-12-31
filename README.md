@@ -39,3 +39,7 @@ Modes:
 3.0:
     -Input as file allows you to get big number of inputs.
     -Bug fixed for OAF
+
+4.0:
+    -Now you can deside weights individually for inputs.
+    -Currently one time use but going to be upgraded to be reusable.
