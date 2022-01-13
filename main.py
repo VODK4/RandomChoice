@@ -33,6 +33,8 @@ outputNumBox.place(x=920, y=20)
 
 def submit():
 
+    ınWeightSubmit()
+
     entry = ınputBox.get("1.0", "end-1c")
     ınput = entry.split(",")
 
@@ -313,45 +315,24 @@ def ınputAsFile():
 ınputAsFileBtn.config(width=6)
 ınputAsFileBtn.place(x=615, y=80)
 
-def ınWeight():
-    win = Toplevel()
-    win.title("Hax Mode")
-    win.geometry("600x200")
-    win.config(bg="#F2B90C")
+WIPlabel = Label(root, text="Weight input (',' seperated):")
+WIPlabel.config(bg="#F2B90C")
+WIPlabel.place(x=30, y=140)
 
-    #Weight Input Box
-    WIPlabel = Label(win, text="Weight ınput (',' seperated):")
-    WIPlabel.config(bg="#F2B90C")
-    WIPlabel.place(x=20, y=1)
+WIP = Text(root, height=5, width=70)
+WIP.place(x=30, y=170)
 
-    WIPlabel2 = Label(win, text="Write just 1 for  default weights.")
-    WIPlabel2.config(bg="#F2B90C")
-    WIPlabel2.place(x=80, y=110)
+def ınWeightSubmit():
+    WIPentry = WIP.get("1.0", "end-1c")
+    WIPınput = WIPentry.split(",")
 
-    WIP = Text(win, height=5, width=70)
-    WIP.place(x=20, y=20)
+    WIPlen = len(WIPınput)
+    WEIGHTLEN.clear()
+    WEIGHTLEN.insert(0, WIPlen)
 
-    def ınWeightSubmit():
-        WIPentry = WIP.get("1.0", "end-1c")
-        WIPınput = WIPentry.split(",")
+    WIPDATA.clear()
+    WIPDATA.insert(0, WIPınput)
 
-        WIPlen = len(WIPınput)
-        WEIGHTLEN.clear()
-        WEIGHTLEN.insert(0, WIPlen)
-
-        WIPDATA.clear()
-        WIPDATA.insert(0, WIPınput)
-
-    #In Weight Submit Btn
-    IWSB = Button(win, text="Submit", command=ınWeightSubmit)
-    IWSB.place(x=20, y=110)
-
-
-win3Btn = Button(root, text="Hax Mode", command=ınWeight)
-win3Btn.config(width=9)
-win3Btn.config(borderwidth=1)
-win3Btn.config(relief=RIDGE)
-win3Btn.place(x=30, y=470)
 
 
 
